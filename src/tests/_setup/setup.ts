@@ -1,7 +1,7 @@
 import { before } from 'mocha'
 
 import { appReady } from '../../app'
-import { dropDatabase } from '../../db/index_mongoose'
+import { dropDatabase } from '../../db'
 
 before(async () => {
   await appReady

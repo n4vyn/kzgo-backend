@@ -22,11 +22,11 @@ for (const level of Object.keys(levels)) {
 }
 
 const log = (level: keyof typeof levels, msg: string) => {
-  if (config.env !== 'production') {
+  if (process.env.NODE_ENV !== 'production') {
     console.log(`${levels[level].color}%s \x1b[0m%s`, level, msg)
   }
 
-  if (config.env !== 'testing') {
+  if (process.env.NODE_ENV !== 'testing') {
     levels[level].file!.write(`[${new Date().toISOString()}] ${msg}\n`)
   }
 }
