@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import fs from 'fs'
-import { config } from '../config'
 
 interface ILevel {
   color: string,

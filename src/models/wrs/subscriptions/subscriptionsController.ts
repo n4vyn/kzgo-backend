@@ -13,10 +13,15 @@ const inputSchema = z.object({
   }),
 })
 
-router.post('/subscribe', (req, res) => {
-  const sub = inputSchema.parse(req.body)
+router.post('/subscribe', async (req, res) => {
+  const sub = await inputSchema.safeParseAsync(req.body)
 
-  SubscriptionRepo.insertOne(sub)
+  if (!sub.success) {
+    res.sendStatus(400)
+    return
+  }
+
+  SubscriptionRepo.insertOne(sub.data)
     .then(() => {
       res.sendStatus(201)
     })
@@ -30,19 +35,29 @@ router.post('/subscribe', (req, res) => {
     })
 })
 
-router.post('/unsubscribe', (req, res) => {
-  const sub = inputSchema.parse(req.body)
+router.post('/unsubscribe', async (req, res) => {
+  const sub = await inputSchema.safeParseAsync(req.body)
 
-  SubscriptionRepo.deleteByEndpoint(sub.endpoint)
+  if (!sub.success) {
+    res.sendStatus(400)
+    return
+  }
+
+  SubscriptionRepo.deleteByEndpoint(sub.data.endpoint)
     .then(() => {
       res.sendStatus(201)
     })
 })
 
-router.post('/checkSubStatus', (req, res) => {
-  const sub = inputSchema.parse(req.body)
+router.post('/checkSubStatus', async (req, res) => {
+  const sub = await inputSchema.safeParseAsync(req.body)
 
-  SubscriptionRepo.findByEndpoint(sub.endpoint)
+  if (!sub.success) {
+    res.sendStatus(400)
+    return
+  }
+
+  SubscriptionRepo.findByEndpoint(sub.data.endpoint)
     .then(s => {
       if (s) res.json(s)
       else res.sendStatus(404)

@@ -11,7 +11,7 @@ interface Subscription {
 
 class SubscriptionRepository extends EntityRepoAbstract<Subscription> {
   constructor () {
-    super('subsciptions')
+    super('subscriptions')
     this.collection.createIndex({ endpoint: 1 }, { name: 'endpoint_1', unique: true })
   }
 
