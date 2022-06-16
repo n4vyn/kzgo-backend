@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "strictNullChecks": true
+  },
+  "lib": ["es2021"],
+  "exclude": [
+    "./node_modules/",
+    "./dist/"
+  ],
+  // so the custom.d.ts is not ignored in mocha tests
+  "ts-node": {
+    "files": true
+  }
+}

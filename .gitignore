@@ -1,0 +1,6 @@
+/flags
+/logs
+/node_modules
+.env
+docker-compose.yml
+TODO.txt

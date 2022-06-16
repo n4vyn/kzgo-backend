@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VNL Possible maps editing</title>
+    <script defer>
+
+        const urlG = '/api/vnlservices/maps';
+        const urlP = '/api/vnlservices/maps';
+
+        let msgDiv, btn, textarea;
+
+        fetch(urlG).then(function(response) {
+            return response.text();
+        }).then(function(data) {
+            msgDiv = document.getElementById('msg');
+            btn = document.getElementById('btn');
+            textarea = document.getElementById('textarea');
+            textarea.value = data;
+        }).catch(function(err) {
+            console.log(err);
+        });
+
+        function save(){
+            const txt = textarea.value.trim();
+            const match = txt.match(/[^a-zA-Z0-9_\n!]/);
+            if (match) {
+                msgDiv.style.color = 'red';
+                msgDiv.innerText = "Cannot save, invalid character found (auto-selected in text).";
+                textarea.focus();
+                const fullText = textarea.value;
+                textarea.value = fullText.substring(0, match.index);
+                textarea.scrollTop = textarea.scrollHeight;
+                textarea.value = fullText;
+                textarea.setSelectionRange(match.index, match.index+1);
+            } else {
+                msgDiv.style.color = 'orange';
+                msgDiv.innerText = 'No invalid symbol found, saving.';
+                btn.disabled = true;
+                fetch(urlP, { 
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        }, 
+                        body: JSON.stringify({ txt })})
+                    .then(function(res) {
+                        setTimeout(() => {
+                            msgDiv.style.color = 'green';
+                            msgDiv.innerText = 'Saved.';
+                            btn.disabled = false;
+                        }, 500)
+                    })
+                    .catch(console.log)
+            }
+        }
+
+    </script>
+    <style>
+        html, body{
+            height: 100%;
+            margin: 0;
+        }
+        textarea{
+            min-width: 25rem;
+            height: 95%;
+            margin: 0.5rem;
+        }
+        .r{
+            display: inline-block;
+            vertical-align: top;
+            padding-top: 0.5rem;
+        }
+        #msg{
+            margin: 0.25rem 0
+        }
+    </style>
+</head>
+<body>
+    <textarea id="textarea"></textarea>
+    <div class="r">
+        <div>Valid symbols: a-z A-Z 0-9 ! _</div>
+        <div id="msg">.</div>
+        <button id="btn" onclick="save()">Save</button>
+    </div>
+</body>
+</html>

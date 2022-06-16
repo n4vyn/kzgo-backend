@@ -1,0 +1,44 @@
+{
+  "name": "kzgo-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=production tsc && node dist/index.js",
+    "dev": "NODE_ENV=dev tsnd --respawn --files src/index.ts",
+    "build": "tsc"
+  },
+  "author": "n4vyn",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
+    "cron": "^2.0.0",
+    "discord.js": "^13.6.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "gamedig": "^3.0.8",
+    "mongodb": "^4.6.0",
+    "web-push": "^3.4.5"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/cron": "^2.0.0",
+    "@types/express": "^4.17.13",
+    "@types/gamedig": "^3.0.2",
+    "@types/mocha": "^9.1.1",
+    "@types/supertest": "^2.0.12",
+    "@types/web-push": "^3.3.2",
+    "@typescript-eslint/eslint-plugin": "^5.22.0",
+    "@typescript-eslint/parser": "^5.22.0",
+    "eslint": "^8.15.0",
+    "mocha": "^10.0.0",
+    "supertest": "^6.2.3",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.6.3"
+  },
+  "engines": {
+    "node": "17.2.0"
+  }
+}

@@ -1,0 +1,805 @@
+[{
+  "mapName": "bkz_apricity_v3",
+  "mapId": 200,
+  "pro": false,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "bkz_apricity_v3",
+  "mapId": 200,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "bkz_hellokitty_v2",
+  "mapId": 212,
+  "pro": false,
+  "mode": "kz_timer",
+  "time": 44.758,
+  "playerName": "Lucas",
+  "steamId": "STEAM_1:1:171878147",
+  "serverId": 1286,
+  "serverName": "Crusty KZ",
+  "createdOn": "2021-08-22T20:40:43"
+},{
+  "mapName": "bkz_hellokitty_v2",
+  "mapId": 212,
+  "pro": true,
+  "mode": "kz_timer",
+  "time": 40.008,
+  "diff": 3.922,
+  "playerName": "masterkagami",
+  "steamId": "STEAM_1:1:633669038",
+  "serverId": 693,
+  "serverName": "ZeddY^'s KZ CLIMB | !ws !knife !gloves | Asia | 128 Tick",
+  "createdOn": "2021-12-21T14:15:04"
+},{
+  "mapName": "bkz_impulse",
+  "mapId": 213,
+  "pro": false,
+  "mode": "kz_timer",
+  "time": 250.039,
+  "playerName": "lenit",
+  "steamId": "STEAM_1:0:113626515",
+  "serverId": 697,
+  "serverName": "PANERA.GG | GOKZ | 128Tick | FastDL",
+  "createdOn": "2021-08-14T05:04:58"
+},{
+  "mapName": "bkz_impulse",
+  "mapId": 213,
+  "pro": true,
+  "mode": "kz_timer",
+  "time": 276.414,
+  "playerName": "lenit",
+  "steamId": "STEAM_1:0:113626515",
+  "serverId": 697,
+  "serverName": "PANERA.GG | GOKZ | 128Tick | FastDL",
+  "createdOn": "2021-05-07T05:07:32"
+},{
+  "mapName": "kz_11342",
+  "mapId": 543,
+  "pro": false,
+  "mode": "kz_timer",
+  "time": 115.773,
+  "playerName": "tetetetetetetetete",
+  "steamId": "STEAM_1:1:119562461",
+  "serverId": 697,
+  "serverName": "PANERA.GG | GOKZ | 128Tick | FastDL",
+  "createdOn": "2021-03-21T01:22:26"
+},{
+  "mapName": "kz_11342",
+  "mapId": 543,
+  "pro": true,
+  "mode": "kz_timer",
+  "time": 114.117,
+  "playerName": "tetetetetetetetete",
+  "steamId": "STEAM_1:1:119562461",
+  "serverId": 1184,
+  "serverName": "oddys server",
+  "createdOn": "2021-03-13T19:01:22"
+},{
+  "mapName": "kz_2seasons_winter_final",
+  "mapId": 581,
+  "pro": false,
+  "mode": "kz_timer",
+  "time": 581.891,
+  "diff": 58.64,
+  "playerName": "smieszneznaczki",
+  "steamId": "STEAM_1:0:182656610",
+  "serverId": 1384,
+  "serverName": "pinkflamingo $",
+  "createdOn": "2022-02-03T15:36:43"
+},{
+  "mapName": "kz_2seasons_winter_final",
+  "mapId": 581,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_abandoned",
+  "mapId": 631,
+  "pro": false,
+  "mode": "kz_timer",
+  "time": 145.492,
+  "diff": 27.86,
+  "playerName": "Blacky",
+  "steamId": "STEAM_1:1:65663138",
+  "serverId": 1064,
+  "serverName": "[EU] CawKZ Kreedz VIP #2",
+  "createdOn": "2022-02-21T20:25:31"
+},{
+  "mapName": "kz_abandoned",
+  "mapId": 631,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_abstruse_od2",
+  "mapId": 230,
+  "pro": false,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_abstruse_od2",
+  "mapId": 230,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_aether_fix",
+  "mapId": 752,
+  "pro": false,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_aether_fix",
+  "mapId": 752,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_after_agitation_easy_fix",
+  "mapId": 233,
+  "pro": false,
+  "mode": "kz_timer",
+  "time": 529.313,
+  "diff": 12.039,
+  "playerName": "KG | Rapu9",
+  "steamId": "STEAM_1:1:89886117",
+  "serverId": 872,
+  "serverName": "Pomppulinna.eu - Kreedz - VIP GOKZ",
+  "createdOn": "2022-02-05T05:24:37"
+},{
+  "mapName": "kz_after_agitation_easy_fix",
+  "mapId": 233,
+  "pro": true,
+  "mode": "kz_timer",
+  "time": 551.477,
+  "diff": 113.671,
+  "playerName": "KG | Rapu9",
+  "steamId": "STEAM_1:1:89886117",
+  "serverId": 872,
+  "serverName": "Pomppulinna.eu - Kreedz - VIP GOKZ",
+  "createdOn": "2022-02-13T05:17:40"
+},{
+  "mapName": "kz_arbitrary_words",
+  "mapId": 647,
+  "pro": false,
+  "mode": "kz_timer",
+  "createdOn": "2022-03-26T17:51:53",
+  "diff": 415.742,
+  "playerName": "SneakY",
+  "serverId": 1484,
+  "serverName": "FEMBOY | KZ - Whitelist 2 - 128tick [GLOBAL]",
+  "steamId": "STEAM_1:0:145431711",
+  "time": 2519.414,
+  "tps": 140
+},{
+  "mapName": "kz_arbitrary_words",
+  "mapId": 647,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_bhop_monsterjam",
+  "mapId": 928,
+  "pro": false,
+  "mode": "kz_timer",
+  "time": 536.461,
+  "diff": 8.375,
+  "playerName": "domino",
+  "steamId": "STEAM_1:1:445989955",
+  "serverId": 961,
+  "serverName": "Esterata.com | KZ - VIP #1 - EU/FI",
+  "createdOn": "2022-05-07T05:46:46",
+  "tps": 3
+},{
+  "mapName": "kz_bhop_monsterjam",
+  "mapId": 928,
+  "pro": true,
+  "mode": "kz_timer",
+  "time": 533.68,
+  "diff": 11.422,
+  "playerName": "Jamy.",
+  "steamId": "STEAM_1:1:117591961",
+  "serverId": 1279,
+  "serverName": ".....'s Femboy gokz",
+  "createdOn": "2021-12-07T02:58:49"
+},{
+  "mapName": "kz_bhop_mosaic_od2",
+  "mapId": 582,
+  "pro": false,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_bhop_mosaic_od2",
+  "mapId": 582,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_bhop_skyworld_go",
+  "mapId": 257,
+  "pro": false,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_bhop_skyworld_go",
+  "mapId": 257,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_bigcastle",
+  "mapId": 920,
+  "pro": false,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_bigcastle",
+  "mapId": 920,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_blackness",
+  "mapId": 641,
+  "pro": false,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_blackness",
+  "mapId": 641,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_cheetos_fix",
+  "mapId": 281,
+  "pro": false,
+  "mode": "kz_timer",
+  "time": 56.766,
+  "diff": 0.976,
+  "playerName": "gus",
+  "steamId": "STEAM_1:0:228802929",
+  "serverId": 1082,
+  "serverName": "Su Family GOKZ",
+  "createdOn": "2022-03-20T13:28:58",
+  "tps": 1
+},{
+  "mapName": "kz_cheetos_fix",
+  "mapId": 281,
+  "pro": true,
+  "mode": "kz_timer",
+  "time": 56.211,
+  "diff": 0.719,
+  "playerName": "gus",
+  "steamId": "STEAM_1:0:228802929",
+  "serverId": 1082,
+  "serverName": "Su Family GOKZ",
+  "createdOn": "2022-03-20T12:34:36",
+  "tps": 0
+},{
+  "mapName": "kz_continuum",
+  "mapId": 683,
+  "pro": false,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_continuum",
+  "mapId": 683,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_dzy_reach_v2",
+  "mapId": 323,
+  "pro": false,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_dzy_reach_v2",
+  "mapId": 323,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_echo",
+  "mapId": 873,
+  "pro": false,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_echo",
+  "mapId": 873,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_farm_v2",
+  "mapId": 692,
+  "pro": false,
+  "mode": "kz_timer",
+  "time": 643.648,
+  "diff": 83.415,
+  "playerName": "lom světla",
+  "steamId": "STEAM_1:0:113626515",
+  "serverId": 905,
+  "serverName": "N1pplerTV | GOKZ Vanilla only | Maprun | by Turtle eSport",
+  "createdOn": "2022-04-24T01:18:44",
+  "tps": 36
+},{
+  "mapName": "kz_farm_v2",
+  "mapId": 692,
+  "pro": true,
+  "mode": "kz_timer",
+  "time": 1723.375,
+  "diff": 1219.234,
+  "playerName": "атласс!",
+  "steamId": "STEAM_1:1:166636803",
+  "serverId": 883,
+  "serverName": "[EU] CawKZ Kreedz VIP #3",
+  "createdOn": "2021-10-03T13:44:15"
+},{
+  "mapName": "kz_ggurk",
+  "mapId": 360,
+  "pro": false,
+  "mode": "kz_timer",
+  "time": 43.93,
+  "playerName": "Lucas",
+  "steamId": "STEAM_1:1:171878147",
+  "serverId": 584,
+  "serverName": "EchoChamber GOKZ",
+  "createdOn": "2021-04-18T00:00:37"
+},{
+  "mapName": "kz_ggurk",
+  "mapId": 360,
+  "pro": true,
+  "mode": "kz_timer",
+  "time": 43.141,
+  "diff": 0.617,
+  "playerName": "Lucas",
+  "steamId": "STEAM_1:1:171878147",
+  "serverId": 1381,
+  "serverName": "Crusty KZ #2 (Dallas)",
+  "createdOn": "2021-12-20T04:34:16"
+},{
+  "mapName": "kz_haste",
+  "mapId": 717,
+  "pro": false,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_haste",
+  "mapId": 717,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_hemochromatosis",
+  "mapId": 839,
+  "pro": false,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_hemochromatosis",
+  "mapId": 839,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_kzra_hohum",
+  "mapId": 771,
+  "pro": false,
+  "mode": "kz_timer",
+  "time": 3632.961,
+  "playerName": "shemp",
+  "steamId": "STEAM_1:0:138976086",
+  "serverId": 553,
+  "serverName": "Pixel GOKZ",
+  "createdOn": "2022-05-04T18:29:11",
+  "diff": 925.406,
+  "tps": 332
+},{
+  "mapName": "kz_kzra_hohum",
+  "mapId": 771,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_lionharder",
+  "mapId": 992,
+  "pro": false,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_lionharder",
+  "mapId": 992,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_lionheart",
+  "mapId": 721,
+  "pro": false,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_lionheart",
+  "mapId": 721,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_luonto",
+  "mapId": 404,
+  "pro": false,
+  "mode": "kz_timer",
+  "time": 162.891,
+  "diff": 5.586,
+  "playerName": "KG | Rapu9",
+  "steamId": "STEAM_1:1:89886117",
+  "serverId": 872,
+  "serverName": "Pomppulinna.eu - Kreedz - VIP GOKZ",
+  "createdOn": "2021-12-30T06:04:27"
+},{
+  "mapName": "kz_luonto",
+  "mapId": 404,
+  "pro": true,
+  "mode": "kz_timer",
+  "time": 169.203,
+  "diff": 7.766,
+  "playerName": "thanksforthewr",
+  "steamId": "STEAM_1:0:651384932",
+  "serverId": 1075,
+  "serverName": "_(:???)_",
+  "createdOn": "2022-04-30T02:12:12",
+  "tps": 0
+},{
+  "mapName": "kz_malignom_short",
+  "mapId": 756,
+  "pro": false,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_malignom_short",
+  "mapId": 756,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_mz",
+  "mapId": 744,
+  "pro": false,
+  "mode": "kz_timer",
+  "time": 12.508,
+  "playerName": "alexander",
+  "steamId": "STEAM_1:1:591122964",
+  "serverId": 905,
+  "serverName": "N1pplerTV | GOKZ Vanilla only | Maprun | by Turtle eSport",
+  "createdOn": "2021-07-19T14:54:37"
+},{
+  "mapName": "kz_mz",
+  "mapId": 744,
+  "pro": true,
+  "mode": "kz_timer",
+  "time": 12.43,
+  "diff": 0.008,
+  "playerName": "Lucas",
+  "steamId": "STEAM_1:1:171878147",
+  "serverId": 1286,
+  "serverName": "Crusty KZ",
+  "createdOn": "2021-12-26T22:24:04"
+},{
+  "mapName": "kz_nix_od",
+  "mapId": 698,
+  "pro": false,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_nix_od",
+  "mapId": 698,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_oloramasa",
+  "mapId": 572,
+  "pro": false,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_oloramasa",
+  "mapId": 572,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_p1",
+  "mapId": 724,
+  "pro": false,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_p1",
+  "mapId": 724,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_prolific",
+  "mapId": 782,
+  "pro": false,
+  "mode": "kz_timer",
+  "time": 85.813,
+  "playerName": "hec",
+  "steamId": "STEAM_1:0:169144352",
+  "serverId": 275,
+  "serverName": "House Of Climb 24/7 GOKZ |FastDL|Canada|SkillBased|128 Tick|",
+  "createdOn": "2020-07-08T02:13:01"
+},{
+  "mapName": "kz_prolific",
+  "mapId": 782,
+  "pro": true,
+  "mode": "kz_timer",
+  "time": 82.953,
+  "diff": 0.375,
+  "playerName": "rey",
+  "steamId": "STEAM_1:0:49288652",
+  "serverId": 882,
+  "serverName": "frick boys-n-harmony",
+  "createdOn": "2022-02-03T23:12:09"
+},{
+  "mapName": "kz_shell",
+  "mapId": 671,
+  "pro": false,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_shell",
+  "mapId": 671,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_simple_sp",
+  "mapId": 725,
+  "pro": false,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_simple_sp",
+  "mapId": 725,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_slide_svn_extreme",
+  "mapId": 609,
+  "pro": false,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_slide_svn_extreme",
+  "mapId": 609,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_unmake",
+  "mapId": 865,
+  "pro": false,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_unmake",
+  "mapId": 865,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "kz_wasabi",
+  "mapId": 959,
+  "pro": false,
+  "mode": "kz_timer",
+  "time": 110.641,
+  "playerName": "Lucas",
+  "steamId": "STEAM_1:1:171878147",
+  "serverId": 1286,
+  "serverName": "Crusty KZ",
+  "createdOn": "2021-08-24T05:32:18"
+},{
+  "mapName": "kz_wasabi",
+  "mapId": 959,
+  "pro": true,
+  "mode": "kz_timer",
+  "time": 106.477,
+  "diff": 18.14,
+  "playerName": "smieszneznaczki",
+  "steamId": "STEAM_1:0:182656610",
+  "serverId": 910,
+  "serverName": "[EU] CawKZ Kreedz VIP #4",
+  "createdOn": "2021-12-12T14:55:20"
+},{
+  "mapName": "skz_map",
+  "mapId": 869,
+  "pro": false,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "skz_map",
+  "mapId": 869,
+  "pro": true,
+  "mode": "kz_timer",
+  "createdOn": null
+},{
+  "mapName": "vnl_cat",
+  "mapId": 633,
+  "pro": false,
+  "mode": "kz_timer",
+  "time": 109.945,
+  "diff": 3.157,
+  "playerName": "Lucas",
+  "steamId": "STEAM_1:1:171878147",
+  "serverId": 1381,
+  "serverName": "Crusty KZ #2 (Dallas)",
+  "createdOn": "2021-10-07T03:15:46"
+},{
+  "mapName": "vnl_cat",
+  "mapId": 633,
+  "pro": true,
+  "mode": "kz_timer",
+  "time": 109.789,
+  "diff": 2.477,
+  "playerName": "smieszneznaczki",
+  "steamId": "STEAM_1:0:182656610",
+  "serverId": 1166,
+  "serverName": "catgirl galaxy",
+  "createdOn": "2021-11-23T19:11:07"
+},{
+  "mapName": "vnl_invasion",
+  "mapId": 837,
+  "pro": false,
+  "mode": "kz_timer",
+  "time": 144.148,
+  "diff": 11.407,
+  "playerName": "smieszneznaczki",
+  "steamId": "STEAM_1:0:182656610",
+  "serverId": 1166,
+  "serverName": "catgirl galaxy",
+  "createdOn": "2021-11-04T00:32:46"
+},{
+  "mapName": "vnl_invasion",
+  "mapId": 837,
+  "pro": true,
+  "mode": "kz_timer",
+  "time": 185.453,
+  "diff": 41.758,
+  "playerName": "smieszneznaczki",
+  "steamId": "STEAM_1:0:182656610",
+  "serverId": 1166,
+  "serverName": "catgirl galaxy",
+  "createdOn": "2021-11-02T20:19:03"
+},{
+  "mapName": "vnl_oy_lj",
+  "mapId": 1041,
+  "pro": false,
+  "mode": "kz_timer",
+  "time": 315.977,
+  "diff": 30.945,
+  "playerName": "smieszneznaczki",
+  "steamId": "STEAM_1:0:182656610",
+  "serverId": 1166,
+  "serverName": "catgirl galaxy",
+  "createdOn": "2022-01-19T15:21:55"
+},{
+  "mapName": "vnl_oy_lj",
+  "mapId": 1041,
+  "pro": true,
+  "mode": "kz_timer",
+  "time": 974.875,
+  "diff": 1001.438,
+  "playerName": "Blacky ☛☚",
+  "steamId": "STEAM_1:1:65663138",
+  "serverId": 1415,
+  "serverName": "[EU] CawKZ Kreedz VIP #8",
+  "createdOn": "2021-10-26T15:24:06"
+},{
+  "mapName": "vnl_slidegarden",
+  "mapId": 991,
+  "pro": false,
+  "mode": "kz_timer",
+  "time": 93.328,
+  "playerName": "nickely",
+  "steamId": "STEAM_1:1:40874265",
+  "serverId": 1019,
+  "serverName": "Esterata.com | KZ - VIP #2 - EU/FI",
+  "createdOn": "2021-06-11T21:33:33"
+},{
+  "mapName": "vnl_slidegarden",
+  "mapId": 991,
+  "pro": true,
+  "mode": "kz_timer",
+  "time": 92.227,
+  "playerName": "Supsti",
+  "steamId": "STEAM_1:0:13330259",
+  "serverId": 460,
+  "serverName": "Jim's KZ but in Europe",
+  "createdOn": "2021-06-12T14:07:28"
+},{
+  "mapName": "vnl_whiterun",
+  "mapId": 841,
+  "pro": false,
+  "mode": "kz_timer",
+  "time": 71.445,
+  "playerName": "gliptal",
+  "steamId": "STEAM_1:0:85072171",
+  "serverId": 882,
+  "serverName": "frick boys-n-harmony",
+  "createdOn": "2022-05-11T15:04:50",
+  "diff": 1.422,
+  "tps": 1
+},{
+  "mapName": "vnl_whiterun",
+  "mapId": 841,
+  "pro": true,
+  "mode": "kz_timer",
+  "time": 72.242,
+  "diff": 0.071,
+  "playerName": "Gliptal",
+  "steamId": "STEAM_1:0:85072171",
+  "serverId": 1277,
+  "serverName": "firehydrant kz",
+  "createdOn": "2021-11-02T05:26:16"
+},{
+  "mapName": "vnl_undefined",
+  "mapId": 1085,
+  "pro": false,
+  "mode": "kz_timer",
+  "time": 169.883,
+  "diff": 0.64,
+  "playerName": "yoshi",
+  "steamId": "STEAM_1:1:433102607",
+  "serverId": 275,
+  "serverName": "House Of Climb 24/7 GOKZ |FastDL|Canada|SkillBased|128 Tick|",
+  "createdOn": "2022-04-16T21:59:33",
+  "tps": 4
+},{
+  "mapName": "vnl_undefined",
+  "mapId": 1085,
+  "pro": true,
+  "mode": "kz_timer",
+  "time": 165.844,
+  "diff": 6.929,
+  "playerName": "smieszneznaczki",
+  "steamId": "STEAM_1:0:182656610",
+  "serverId": 1166,
+  "serverName": "catgirl galaxy",
+  "createdOn": "2021-11-25T11:37:12"
+},{
+  "mapName": "vnl_simplebrickrooms",
+  "mapId": 1119,
+  "pro": false,
+  "mode": "vnl",
+  "time": 387.602,
+  "diff": 39.531,
+  "tps": 87,
+  "playerName": "DYALITE",
+  "steamId": "STEAM_1:1:119562461",
+  "serverId": 905,
+  "serverName": "N1pplerTV | GOKZ Vanilla only | Maprun | by Turtle eSport",
+  "createdOn": "2022-03-20T16:17:02"
+},{
+  "mapName": "kz_communityblock",
+  "mapId": 1136,
+  "pro": false,
+  "mode": "vnl",
+  "time": 2382.109,
+  "diff": 329.813,
+  "tps": 420,
+  "playerName": "ReDMooN",
+  "steamId": "STEAM_1:1:150195700",
+  "serverId": 882,
+  "serverName": "frick boys-n-harmony",
+  "createdOn": "2022-04-14T02:53:11"
+}]
