@@ -1,5 +1,4 @@
 import Axios from 'axios'
-import fs from 'fs'
 import Discord from '../../../utils/Discord'
 import { KzMap, MapRepo } from '../../maps/MapRepo'
 import { MapperRepo } from '../../mappers/MapperRepo'
@@ -48,8 +47,6 @@ const fetchMapsFromApi = async () => {
       m.name,
     ]
   }))
-
-  // const vnlPossibleMaps = new Set(fs.readFileSync('./src/fileDB/vnlPossibleMaps.txt', 'utf8').split('\n'))
 
   //get record for every stage of each map
   const resultRecordFilters = await Axios.get('http://kztimerglobal.com/api/v2.0/record_filters?mode_ids=200&limit=9999&has_teleports=true')
@@ -113,10 +110,6 @@ const fetchMapsFromApi = async () => {
     }
     else {
       mapObject.sp = true
-
-      // if (vnlPossibleMaps.has(map.name)) {
-      //   mapObject.vp = true
-      // }
     }
 
     newMaps.push(mapObject)
@@ -129,7 +122,9 @@ const fetchMapsFromApi = async () => {
     }
   }
 
-  await MapRepo.insertMany(newMaps, { ordered: false })
+  if (newMaps.length !== 0 ) {
+    await MapRepo.insertMany(newMaps, { ordered: false })
+  }
 
   if (Object.keys(mapsToUpdate).length === 0) {
     for (const [id, obj] of Object.entries(mapsToUpdate)) {

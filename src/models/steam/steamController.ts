@@ -8,6 +8,7 @@ router.get('/:steamid64', async (req, res) => {
 
   if (!steamData) {
     res.sendStatus(500)
+    return
   }
 
   res.json(steamData)

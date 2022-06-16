@@ -6,6 +6,7 @@ export interface AuthEntity {
   password: string
   token: string | null
   roles: Role[]
+  setPwToken?: string
 }
 
 class AuthRepository extends EntityRepoAbstract<AuthEntity> {
@@ -23,12 +24,30 @@ class AuthRepository extends EntityRepoAbstract<AuthEntity> {
     return this.collection.findOne({ token })
   }
 
-  async create (name: string, hashedPw: string, roles: Role[]) {
+  async findByPwToken (setPwToken: string): Promise<AuthEntity | null> {
+    return this.collection.findOne({ setPwToken })
+  }
+
+  async create (name: string, hashedPw: string, roles: Role[], setPwToken: string) {
     return this.collection.insertOne({
       name,
       password: hashedPw,
       roles,
       token: null,
+      setPwToken,
+    })
+  }
+
+  async setPassword (setPwToken: string, hashedPw: string) {
+    return this.collection.updateOne({
+      setPwToken,
+    }, {
+      $set: {
+        password: hashedPw,
+      },
+      $unset: {
+        setPwToken: 1,
+      },
     })
   }
 
