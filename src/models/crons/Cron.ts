@@ -1,6 +1,6 @@
 import { CronJob } from 'cron'
-import logger from '../../utils/logger'
-import Discord from '../../utils/Discord'
+import { Logger } from '../../utils/Logger'
+import { Discord } from '../../utils/Discord'
 import { CronRepo } from './CronRepo'
 
 export class Cron {
@@ -26,7 +26,7 @@ export class Cron {
     return async () => {
       await process()
         .catch(error => {
-          logger.error(error)
+          Logger.error(error)
           Discord.sendError(error, `${this.name} cron failed`)
         })
 

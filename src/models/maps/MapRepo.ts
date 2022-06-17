@@ -2,16 +2,16 @@ import { Filter, FindOptions } from 'mongodb'
 import { EntityRepoAbstract } from '../../db/EntityRepoAbstract'
 
 export interface KzMap {
-  id: number,
-  name: string,
-  tier: number,
-  workshopId: string,
-  bonuses: number,
-  sp: boolean,
-  vp: boolean,
-  mapperNames: string[],
-  mapperIds: string[],
-  date: string,
+  id: number
+  name: string
+  tier: number
+  workshopId: string
+  bonuses: number
+  sp: boolean
+  vp: boolean
+  mapperNames: string[]
+  mapperIds: string[]
+  date: string
 }
 
 type Unrequire<T> = { [K in keyof T]?: T[K] }

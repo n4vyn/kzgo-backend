@@ -1,7 +1,7 @@
 import express from 'express'
 import { auth } from '../../middlewares/auth/auth'
 import { KzMode } from '../../types'
-import Logger from '../../utils/logger'
+import { Logger } from '../../utils/Logger'
 import { recalculateCompletions } from '../admin/functions/fetchMapsFromApi'
 import { CompletionRepo } from './CompletionRepo'
 

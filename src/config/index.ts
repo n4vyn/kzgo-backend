@@ -1,4 +1,4 @@
-import logger from '../utils/logger'
+import { Logger } from '../utils/Logger'
 import { config as defaultConfig } from './default'
 
 let envSpecificConfig = {}
@@ -7,7 +7,7 @@ if (process.env.NODE_ENV) {
   try {
     envSpecificConfig = require(`./${process.env.NODE_ENV}.json`)
   } catch (error) {
-    logger.error(`Env specific config for ${process.env.NODE_ENV} was not loaded: \n${error}`)
+    Logger.error(`Env specific config for ${process.env.NODE_ENV} was not loaded: \n${error}`)
   }
 }
 

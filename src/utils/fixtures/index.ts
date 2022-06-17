@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-import logger from '../logger'
+import { Logger } from '../Logger'
 import { config } from '../../config'
 import { recalculateCompletions } from '../../models/admin/functions/fetchMapsFromApi'
 import { AuthRepo } from '../../models/auth/AuthRepo'
@@ -16,22 +16,22 @@ const insertMapFixtures = async () => {
   const mapFixtures = require('./maps.json')
   await MapRepo.insertMany(mapFixtures)
   await recalculateCompletions()
-  logger.info('Map fixtures inserted.')
+  Logger.info('Map fixtures inserted.')
 }
 
 const insertMapperFixtures = async () => {
   if (await MapperRepo.isNotEmpty()) return
   const mapperFixtures = require('./mappers.json')
   await MapperRepo.insertMany(mapperFixtures)
-  logger.info('Mapper fixtures inserted.')
+  Logger.info('Mapper fixtures inserted.')
 }
 
-const insertMapWithMapperIdsFixtures = async () => {
-  if (await MorbiusRepo.isNotEmpty()) return
-  const mapWithMapperIdsFixtures = require('./mapWithMapperIdsFixtures.json')
-  await MorbiusRepo.insertMany(mapWithMapperIdsFixtures)
-  logger.info('MapWithMapperIds fixtures inserted.')
-}
+// const insertMapWithMapperIdsFixtures = async () => {
+//   if (await MorbiusRepo.isNotEmpty()) return
+//   const mapWithMapperIdsFixtures = require('./mapWithMapperIdsFixtures.json')
+//   await MorbiusRepo.insertMany(mapWithMapperIdsFixtures)
+//   Logger.info('MapWithMapperIds fixtures inserted.')
+// }
 
 const insertWrFixtures = async () => {
   if (await WrRepos.kz_timer.isNotEmpty()) return
@@ -41,14 +41,14 @@ const insertWrFixtures = async () => {
   await WrRepos.kz_timer.insertMany(kztWrFixtures)
   await WrRepos.kz_simple.insertMany(skzWrFixtures)
   await WrRepos.kz_vanilla.insertMany(vnlWrFixtures)
-  logger.info('WR fixtures inserted.')
+  Logger.info('WR fixtures inserted.')
 }
 
 const insertServerFixtures = async () => {
   if (await ServerRepo.isNotEmpty()) return
   const serverFixtures = require('./servers.json')
   await ServerRepo.insertMany(serverFixtures)
-  logger.info('Server fixtures inserted.')
+  Logger.info('Server fixtures inserted.')
 }
 
 const insertAuthFixtures = async () => {
@@ -57,12 +57,12 @@ const insertAuthFixtures = async () => {
   createUser('mapmod', 'mapmod', ['MapMod'])
   createUser('vnlmod', 'vnlmod', ['VnlMod'])
   createUser('twitch', 'twitch', ['TwitchStreamer'])
-  logger.info('Server fixtures inserted.')
+  Logger.info('Server fixtures inserted.')
 }
 
 const initFixtures = async () => {
   if (config.env === 'production') return
-  logger.info('Init fixtures called.')
+  Logger.info('Init fixtures called.')
   insertMapFixtures()
   insertMapperFixtures()
   // insertMapWithMapperIdsFixtures()

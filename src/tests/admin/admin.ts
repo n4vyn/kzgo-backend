@@ -3,7 +3,7 @@
 // import { describe, it } from 'mocha'
 // import request from 'supertest'
 
-// import { app } from '../../app'
+// import { app } from '../../index'
 // import { config } from '../../config'
 
 // describe('Auth API', () => {

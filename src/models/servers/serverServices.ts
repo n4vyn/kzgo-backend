@@ -1,5 +1,5 @@
 import Gamedig, { QueryResult, Player } from 'gamedig'
-import logger from '../../utils/logger'
+import { Logger } from '../../utils/Logger'
 import { MapRepo } from '../maps/MapRepo'
 import { ServerRepo } from './ServerRepo'
 
@@ -45,7 +45,7 @@ ServerRepo.getAll()
     fetchServerStates()
   })
   .catch(error => {
-    logger.error(error)
+    Logger.error(error)
   })
 
 setInterval(() => {

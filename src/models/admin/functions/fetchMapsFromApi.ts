@@ -1,10 +1,23 @@
 import Axios from 'axios'
-import Discord from '../../../utils/Discord'
+import { Discord } from '../../../utils/Discord'
 import { KzMap, MapRepo } from '../../maps/MapRepo'
 import { MapperRepo } from '../../mappers/MapperRepo'
 import { MorbiusRepo } from '../../mapsWithMapperIds/MorbiusRepo'
 import { CompletionRepo, CompletionTiers } from '../../completions/CompletionRepo'
 import { KzMode } from '../../../types'
+
+interface MapFromApi {
+  id: number
+  name: string
+  filesize: number
+  validated: boolean
+  difficulty: number
+  created_on: string
+  updated_on: string
+  approved_by_steamid64: string
+  workshop_url: string
+  download_url: string
+}
 
 /**
  * - fetches maps from kz api, fetches all filters from kz api
@@ -22,7 +35,7 @@ const fetchMapsFromApi = async () => {
 
   //get all maps
   const response = await Axios.get('http://kztimerglobal.com/api/v2.0/maps?limit=9999&is_validated=true')
-  const mapsFromApi = response.data
+  const mapsFromApi: MapFromApi[] = response.data
 
   const currentMaps = new Map((await MapRepo.getAll()).map(m => {
     return [
@@ -56,16 +69,22 @@ const fetchMapsFromApi = async () => {
   const mapIdToBonusCount = new Map<number, number>()
 
   for (const { map_id, stage } of bonusFilters) {
-    if (mapIdToBonusCount.get(map_id) ?? 0 < stage) {
+    if ((mapIdToBonusCount.get(map_id) ?? 0) < stage) {
       mapIdToBonusCount.set(map_id, stage)
     }
   }
 
   const newMaps: KzMap[] = []
   const mapNamesWithUnknownMapper: string[] = []
-  const mapsToUpdate: Record<number, { tier?: number, bonuses?: number }> = {}
   const mapNamesFromApi = new Set<string>()
   const degloballedMaps: string[] = []
+  const mapsToUpdate: {
+    id: number,
+    name: string,
+    old: { tier?: number, bonuses?: number },
+    $set: { tier?: number, bonuses?: number },
+    stringify: CallableFunction,
+  }[] = []
 
   for (const map of mapsFromApi) {
     mapNamesFromApi.add(map.name)
@@ -73,11 +92,32 @@ const fetchMapsFromApi = async () => {
     const bonuses = mapIdToBonusCount.get(map.id) ?? 0
 
     if (currentMaps.has(map.name)) {
-      const o = currentMaps.get(map.name)!
-      const obj: { tier?: number, bonuses?: number } = {}
-      if (o.tier !== map.difficulty) obj.tier = map.difficulty
-      if (o.bonuses !== bonuses) obj.bonuses = bonuses
-      if (obj.tier || obj.bonuses !== undefined) mapsToUpdate[map.id] = obj
+      const currentMap = currentMaps.get(map.name)!
+      const obj: typeof mapsToUpdate[0] = {
+        id: map.id,
+        name: map.name,
+        old: {},
+        $set: {},
+        stringify: function () {
+          return `${this.name} (${this.id})\n${
+            this.$set.tier ? `Tier: ${this.old.tier } -> ${this.$set.tier}\n` : ''} ${
+            this.$set.bonuses ? `Bonuses: ${this.old.bonuses } -> ${this.$set.bonuses}` : ''}`
+        },
+      }
+
+      if (currentMap.tier !== map.difficulty) {
+        obj.old.tier = currentMap.tier
+        obj.$set.tier = map.difficulty
+      }
+
+      if (currentMap.bonuses !== bonuses) {
+        obj.old.bonuses = currentMap.bonuses
+        obj.$set.bonuses = bonuses
+      }
+
+      if (obj.$set.tier || obj.$set.bonuses !== undefined) {
+        mapsToUpdate.push(obj)
+      }
     }
 
     if (currentMaps.has(map.name)) continue
@@ -93,7 +133,7 @@ const fetchMapsFromApi = async () => {
       name: map.name,
       id: map.id,
       tier: map.difficulty,
-      workshopId: map.workshop_url.split('=').pop(),
+      workshopId: map.workshop_url.split('=').pop() ?? '',
       bonuses,
       sp: false,
       vp: false,
@@ -123,12 +163,21 @@ const fetchMapsFromApi = async () => {
   }
 
   if (newMaps.length !== 0 ) {
+    Discord.sendEmbed({
+      color: Discord.Colors.aqua,
+      title: 'Fetch maps from api',
+      channel: Discord.Channels.log,
+      asCodeBlock: false,
+
+      content: `\`\`\`New maps\n${ JSON.stringify(newMaps, null, 2)}\`\`\``,
+    })
+
     await MapRepo.insertMany(newMaps, { ordered: false })
   }
 
-  if (Object.keys(mapsToUpdate).length === 0) {
-    for (const [id, obj] of Object.entries(mapsToUpdate)) {
-      await MapRepo.updateById(parseInt(id, 10), obj)
+  if (mapsToUpdate.length > 0) {
+    for (const { id, $set } of mapsToUpdate) {
+      await MapRepo.updateById(id, $set)
     }
   }
 
@@ -140,16 +189,7 @@ const fetchMapsFromApi = async () => {
     channel: Discord.Channels.log,
     asCodeBlock: false,
 
-    content: `\`\`\`New maps\n${ JSON.stringify(newMaps, null, 2)}\`\`\``,
-  })
-
-  Discord.sendEmbed({
-    color: Discord.Colors.aqua,
-    title: 'Fetch maps from api',
-    channel: Discord.Channels.log,
-    asCodeBlock: false,
-
-    content: `\`\`\`Updated maps\n${ JSON.stringify(mapsToUpdate)
+    content: `\`\`\`Updated maps\n${mapsToUpdate.map(m => m.stringify()).join('\n')
     }\n\nDegloballed maps\n${ degloballedMaps.join(', ')
     }\n\nMaps with unknown mapper\n${ mapNamesWithUnknownMapper.join(', ') }\`\`\``,
   })

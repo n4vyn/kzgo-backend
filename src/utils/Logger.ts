@@ -1,12 +1,13 @@
 /* eslint-disable no-console */
 import fs from 'fs'
+import { once } from 'events'
 
-interface ILevel {
+interface Level {
   color: string,
   file?: fs.WriteStream
 }
 
-const levels: Record<string, ILevel> = {
+const levels: Record<string, Level> = {
   info: {
     color: '\x1b[32m',
   },
@@ -15,9 +16,19 @@ const levels: Record<string, ILevel> = {
   },
 }
 
-for (const level of Object.keys(levels)) {
-  // have to use process cause config depends on logger
-  levels[level].file = fs.createWriteStream(`./logs/${process.env.NODE_ENV}/${level}.log`, { flags: 'a' })
+export const createStreams = async () => {
+  const date = new Date()
+  const yearMonth = `${date.getFullYear()}-${date.toDateString().slice(4, 7)}`
+  fs.mkdirSync(`./logs/${process.env.NODE_ENV}`, { recursive: true })
+  for (const level of Object.keys(levels)) {
+    const writer = levels[level].file
+    if (writer !== undefined) {
+      writer.end()
+      await once(writer, 'finish')
+    }
+    // have to use process cause config depends on logger
+    levels[level].file = fs.createWriteStream(`./logs/${process.env.NODE_ENV}/${yearMonth}-${level}.log`, { flags: 'a' })
+  }
 }
 
 const log = (level: keyof typeof levels, msg: string) => {
@@ -31,7 +42,7 @@ const log = (level: keyof typeof levels, msg: string) => {
 }
 
 // did this as quick fix cause I had winston logger already imported everywhere and found out it sucks when you pass error into it
-export default class Logger {
+export class Logger {
   public static readonly info = (msg: string, msg2 = '') => {
     log('info', msg + msg2)
   }

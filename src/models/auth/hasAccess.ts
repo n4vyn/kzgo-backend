@@ -7,7 +7,7 @@
 // However it was fun to make and I would like to find use for it in other projects or at least share it with yall on git
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import logger from '../../utils/logger'
+import { Logger } from '../../utils/Logger'
 import { AuthRepo } from './AuthRepo'
 import { endpointSettings, IEndpointSettings, Roles } from './endpointSettings'
 
@@ -55,7 +55,7 @@ const hasAccess = async (
   const accessRecord = await AuthRepo.findByToken(token)
   if (accessRecord === null) return false
   const tokenRoles = accessRecord.roles.map(str => Roles[str])
-  logger.info(`[ACCESS] ${accessRecord.name} accessed ${method} ${originalUrl}.`)
+  Logger.info(`[ACCESS] ${accessRecord.name} accessed ${method} ${originalUrl}.`)
 
   if (tokenRoles.some(role => role === Roles.Admin || requiredRoles.has(role))) {
     return true

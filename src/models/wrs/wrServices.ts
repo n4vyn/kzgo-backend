@@ -1,7 +1,7 @@
 import Axios from 'axios'
 import webpush from 'web-push'
 
-import Discord from '../../utils/Discord'
+import { Discord } from '../../utils/Discord'
 import { KzMode, KzRunType } from '../../types'
 import { WrRepos } from './WrRepos'
 import { SubscriptionRepo } from './subscriptions/SubscriptionRepo'
@@ -9,7 +9,7 @@ import { config } from '../../config'
 import { RunFromApi, WorldRecordBc } from './interfaces'
 import { MapRepo } from '../maps/MapRepo'
 import { fetchMultipleSteamProfiles } from '../steam/steamServices'
-import Logger from '../../utils/logger'
+import { Logger } from '../../utils/Logger'
 
 webpush.setVapidDetails(`mailto:${config.webPush.email}`, config.webPush.publicKey, config.webPush.privateKey)
 
@@ -18,16 +18,10 @@ export const getPlayerWrCount = async (mode: KzMode, type: KzRunType, steamId: s
 }
 
 export const getLeaderboards = async (mode: KzMode, type: KzRunType) => {
-  // const wrs = (await WrRepos.countAndGroupBy(mode, type)).map(wr => ({ steamId64: steamid32to64(wr._id), ...wr }))
   const wrs = await WrRepos.countAndGroupBy(mode, type)
   const steams = await fetchMultipleSteamProfiles(wrs.map(x => x._id))
   return wrs.map(wr => ({ playerName: steams.find(s => s.steamid === wr._id)?.personaname, ...wr }))
 }
-
-// const steamid32to64 = (id: string) => {
-//   const [_, a, b] = id.split(':')
-//   return (((BigInt(b) * BigInt(2)) + BigInt(a)) + BigInt(76561197960265728)).toString()
-// }
 
 export const getWrsForModeAndType = async (mode: KzMode, type: KzRunType) => {
   return WrRepos.getForModeAndType(mode, type)

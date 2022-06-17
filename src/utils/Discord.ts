@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios'
 import { Client, Intents, MessageEmbed, TextChannel } from 'discord.js'
 import { config } from '../config'
-import logger from './logger'
+import { Logger } from './Logger'
 
 enum Colors {
   green = '#00ff00',
@@ -29,10 +29,10 @@ interface SendEmbedInput {
   asCodeBlock?: boolean,
 }
 
-class Discord {
+class DiscordC {
   constructor () {
     this.client.on('ready', async () => {
-      logger.info(`Logged in as ${this.client.user?.tag}!`)
+      Logger.info(`Logged in as ${this.client.user?.tag}!`)
       this.makeReady()
       if (config.env === 'production') {
         const channel = this.getChannel(Channels.log)
@@ -123,4 +123,4 @@ class Discord {
   }
 }
 
-export default new Discord()
+export const Discord = new DiscordC()

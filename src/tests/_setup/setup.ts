@@ -1,6 +1,6 @@
 import { before } from 'mocha'
 
-import { appReady } from '../../app'
+import { appReady } from '../../index'
 import { dropDatabase } from '../../db'
 
 before(async () => {

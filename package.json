@@ -6,7 +6,8 @@
   "scripts": {
     "start": "NODE_ENV=production node dist/index.js",
     "dev": "NODE_ENV=dev tsnd --respawn --files src/index.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "test": "NODE_ENV=testing mocha -r ts-node/register 'src/tests/**/*.ts' --exit"
   },
   "author": "n4vyn",
   "license": "ISC",

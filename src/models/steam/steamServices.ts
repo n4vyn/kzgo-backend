@@ -1,6 +1,6 @@
 import Axios from 'axios'
 import { config } from '../../config'
-import Discord from '../../utils/Discord'
+import { Discord } from '../../utils/Discord'
 
 interface SteamResponse {
   steamid: string

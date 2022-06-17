@@ -1,6 +1,6 @@
 import Axios from 'axios'
-import Discord from '../../../utils/Discord'
-import logger from '../../../utils/logger'
+import { Discord } from '../../../utils/Discord'
+import { Logger } from '../../../utils/Logger'
 import { MapperRepo } from '../../mappers/MapperRepo'
 import { MapWithMapperIds, MorbiusRepo } from '../../mapsWithMapperIds/MorbiusRepo'
 
@@ -82,7 +82,7 @@ const fetchMapsFromWorkshop = async (): Promise<void> => {
       const mapperName = await getMapperName(workshopFileDetails.creator)
       mapperIdToMapperName.set(workshopFileDetails.creator, mapperName)
       mappersToInsert.push({ steamId: workshopFileDetails.creator, name: mapperName })
-      logger.info('new mapper added', mapperName)
+      Logger.info('new mapper added', mapperName)
     }
 
     result.push({ mapName, mapperIds: [workshopFileDetails.creator], release })
