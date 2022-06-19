@@ -22,6 +22,8 @@ const errMsg = 'not found'
 
 router.use(auth('TwitchStreamer'))
 
+// todo: this doesn't work anymore
+
 router.get('/:secret/map', twitchAuth, async (req, res) => {
   const map = await findMapOnPlayersServer(req.steamId64!)
 

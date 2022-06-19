@@ -1,5 +1,9 @@
 // import * as assert from 'assert'
 
+// todo
+// I tested everything through the frontend so I am a bit lazy to do automatic tests right now
+// but I definitely do want to do them along with setting up git pipeline
+
 // import { describe, it } from 'mocha'
 // import request from 'supertest'
 

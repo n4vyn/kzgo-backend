@@ -50,37 +50,22 @@ const fetchSteamName = async (steamId64: string): Promise<string> => {
   return namesCache.get(steamId64)!
 }
 
-// TODO:
 const runToString = (run: RunFromApi): string => {
   if (!run) return 'none'
+  const seconds = Math.floor(run.time)
+  const ms = run.time.toFixed(3).slice(-3)
+  const h = Math.floor(seconds / 3600)
+  const m = Math.floor((seconds % 3600) / 60)
+  const s = Math.floor((seconds % 3600) % 60)
 
-  const apiTime = run.time
+  const pad = (num: number) => (`0${num}`).slice(-2)
+  const result = `${pad(m)}:${pad(s)}.${ms} by ${run.player_name}`
 
-  const time = Math.floor(apiTime)
-  const ms = apiTime.toFixed(3).slice(-3)
-
-  let s :string|number = Math.floor(time % 60)
-  if (s < 10) s = `0${s}`
-
-  let m :string|number = Math.floor(time/60)
-
-  const h = Math.floor(m/60)
-
-  let tt: string
-
-  if (h != 0) {
-    m = m - h*60
-    if (m < 10) m = `0${m}`
-    tt = `${h}:${m}:${s}.${ms}`
-  } else {
-    if (m == 0) {
-      tt = `${s}.${ms}`
-    } else {
-      tt = `${m}:${s}.${ms}`
-    }
+  if (h > 0) {
+    return `${h}:${result}`
   }
 
-  return `${tt} by ${run.player_name}`
+  return result
 }
 
 export {

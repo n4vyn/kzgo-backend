@@ -68,7 +68,6 @@ const fetchServerStates = (): void => {
     const promise = promises[i]
 
     promise.then(async state => {
-      // TODO: tady ta mrdka sviti nevim proc
       if (!state) return
 
       let mapName = state.map.split('/').pop()!.toLowerCase()
