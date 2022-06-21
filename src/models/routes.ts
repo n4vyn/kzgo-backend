@@ -21,7 +21,7 @@ router.get('/status', (req, res) => {
 })
 
 router.get('/flags/:country', (req, res) => {
-  if (!/[A-Z]{2}/.test(req.params.country)) {
+  if (!/^[A-Z]{2}$/.test(req.params.country)) {
     res.sendStatus(400)
     return
   }
