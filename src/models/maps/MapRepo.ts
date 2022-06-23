@@ -51,7 +51,7 @@ class MapRepository extends EntityRepoAbstract<KzMap> {
     })
   }
 
-  async deleteByName (name: string) {
+  async findAndDeleteByName (name: string) {
     return this.collection.findOneAndDelete({ name })
   }
 

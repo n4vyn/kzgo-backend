@@ -32,9 +32,7 @@ router.put('/user', auth('JeffBezos'), async (req, res) => {
   const { name, password, roles } = req.body
   const setPwToken = await createUser(name, password, roles)
 
-  res.json({
-    setPwToken,
-  })
+  res.json({ setPwToken })
 })
 
 router.get('/user', async (req, res) => {

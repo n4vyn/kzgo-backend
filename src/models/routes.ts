@@ -5,6 +5,7 @@ import admin from './admin/adminController'
 import completions from './completions/completionsController'
 import maps from './maps/mapsController'
 import mappers from './mappers/mappersController'
+import skzservices from './skzservices/skzservicesController'
 import steam from './steam/steamController'
 import servers from './servers/serversController'
 import twitch from './twitch/twitchController'
@@ -34,6 +35,7 @@ router.use('/admin', admin)
 router.use('/completions', completions)
 router.use('/maps', maps)
 router.use('/mappers', mappers)
+router.use('/skzservices', skzservices)
 router.use('/steam', steam)
 router.use('/servers', servers)
 router.use('/twitch', twitch)

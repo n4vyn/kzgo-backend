@@ -21,8 +21,10 @@ interface WorldRecord {
 class WrRepository extends EntityRepoAbstract<WorldRecord> {
   constructor (mode: KzMode | 'latest') {
     super(`wrs_${mode}`)
-    this.collection.createIndex({ mapId: 1, pro: 1 }, { name: 'mapId_1_pro_1', unique: true })
-    this.collection.createIndex({ mapName: 1, pro: 1 }, { name: 'mapName_1_pro_1', unique: true })
+    if (mode !== 'latest') {
+      this.collection.createIndex({ mapId: 1, pro: 1 }, { name: 'mapId_1_pro_1', unique: true })
+      this.collection.createIndex({ mapName: 1, pro: 1 }, { name: 'mapName_1_pro_1', unique: true })
+    }
     this.collection.createIndex({ steamId: 1 }, { name: 'steamId_1' })
     this.collection.createIndex({ steamId64: 1 }, { name: 'steamId64_1' })
   }

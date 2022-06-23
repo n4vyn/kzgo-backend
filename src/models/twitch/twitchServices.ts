@@ -1,16 +1,12 @@
-import { RequestHandler } from 'express'
+import Axios from 'axios'
+import { KzMode } from '../../types'
 import { getServerStates } from '../servers/serverServices'
 import { fetchSteamProfile } from '../steam/steamServices'
 import { RunFromApi } from '../wrs/interfaces'
 
 const namesCache = new Map<string, string>()
 
-const twitchAuth: RequestHandler = (req, res, next) => {
-  req.headers.authorization = `Custom ${req.params.secret}`
-  next()
-}
-
-const findMapOnPlayersServer = async (steamId64: string) => {
+export const findMapOnPlayersServer = async (steamId64: string) => {
   const steamName = await fetchSteamName(steamId64)
 
   const serverStates = getServerStates().serverStates
@@ -41,13 +37,26 @@ const fetchSteamName = async (steamId64: string): Promise<string> => {
     throw new Error()
   }
 
-  namesCache.set(steamId64, steamData.name)
+  namesCache.set(steamId64, steamData.personaname)
 
   setTimeout(() => {
     namesCache.delete(steamId64)
   }, 300000)
 
   return namesCache.get(steamId64)!
+}
+
+export const getWrText = async (mapName: string, stage: string, mode: KzMode) => {
+  const url = `https://kztimerglobal.com/api/v2.0/records/top?map_name=${mapName}&stage=${stage}&modes_list_string=${mode}&limit=1&has_teleports=`
+
+  const promises = [
+    await Axios.get(`${url}true`),
+    await Axios.get(`${url}false`),
+  ]
+
+  const [resTp, resPro] = await Promise.all(promises)
+
+  return `${mapName}; TP: ${runToString(resTp.data[0])}; PRO: ${runToString(resPro.data[0])}`
 }
 
 const runToString = (run: RunFromApi): string => {
@@ -66,10 +75,4 @@ const runToString = (run: RunFromApi): string => {
   }
 
   return result
-}
-
-export {
-  twitchAuth,
-  findMapOnPlayersServer,
-  runToString,
 }

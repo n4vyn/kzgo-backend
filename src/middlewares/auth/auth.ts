@@ -2,7 +2,7 @@ import type { RequestHandler } from 'express'
 import { AuthRepo } from '../../models/auth/AuthRepo'
 import { Logger } from '../../utils/Logger'
 
-export type Role = 'JeffBezos' | 'Admin' | 'MapMod' | 'VnlMod' | 'TwitchStreamer'
+export type Role = 'JeffBezos' | 'Admin' | 'MapMod' | 'VnlMod' | 'SkzMod'
 
 export const auth = (requiredRole: Role): RequestHandler => {
   return async (req, res, next) => {

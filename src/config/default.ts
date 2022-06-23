@@ -6,6 +6,8 @@ export const config = {
   env: process.env.NODE_ENV,
   server: {
     port: process.env.PORT ?? 5000,
+    twitchSecret: process.env.TWITCH_SECRET ?? '',
+    twitchSteamId: process.env.TWITCH_STEAM_ID ?? '',
   },
   db: {
     uri: process.env.MONGO_URI ?? '',

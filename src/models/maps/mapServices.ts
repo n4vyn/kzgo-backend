@@ -1,4 +1,5 @@
 import fs from 'fs'
+import { KzMode } from '../../types'
 import { CompletionRepo } from '../completions/CompletionRepo'
 import { WrRepos } from '../wrs/WrRepos'
 import { KzMap, MapRepo } from './MapRepo'
@@ -12,7 +13,7 @@ MapRepo.getAll()
     cachedMaps = maps
   })
 
-const recacheMaps = async (): Promise<void> => {
+export const recacheMaps = async (): Promise<void> => {
   cachedMaps = await MapRepo.getAll()
 }
 
@@ -20,20 +21,20 @@ setInterval(() => {
   recacheMaps()
 }, 60000)
 
-const getAllMapsCached = (): KzMap[] => {
+export const getAllMapsCached = (): KzMap[] => {
   return cachedMaps
 }
 
-const getMrdates = () => {
+export const getMrdates = () => {
   return mrdates
 }
 
-const setMrdates = (mapReleaseDatesStringHehe: string): void => {
+export const setMrdates = (mapReleaseDatesStringHehe: string): void => {
   fs.writeFileSync('./src/fileDB/mrd.json', mapReleaseDatesStringHehe, 'utf-8')
   mrdates = JSON.parse(mapReleaseDatesStringHehe)
 }
 
-const renameMap = async (renameFrom: string, renameTo: string) => {
+export const renameMap = async (renameFrom: string, renameTo: string) => {
   await MapRepo.rename(renameFrom, renameTo)
 
   // todo decide if unnecessary, probably yes
@@ -44,7 +45,31 @@ const renameMap = async (renameFrom: string, renameTo: string) => {
   await WrRepos.renameMap(renameFrom, renameTo)
 }
 
-const editMapTier = async (map: KzMap, newTier: number) => {
+export const deglobalMap = async (name: string) => {
+  const result = await MapRepo.findAndDeleteByName(name)
+
+  if (!result.ok || result.value === null) {
+    throw new Error(`Delete failed. ${result.lastErrorObject}`)
+  }
+
+  const map = result.value
+
+  if (!map.name.startsWith('skz') && !map.name.startsWith('vnl')) {
+    await CompletionRepo.incTierAndTotal('kz_timer', result.value.tier, -1, name.startsWith('kzpro'))
+  }
+  if (map.sp) {
+    await CompletionRepo.incTierAndTotal('kz_simple', result.value.tier, -1, name.startsWith('kzpro'))
+  }
+  if (map.vp) {
+    await CompletionRepo.incTierAndTotal('kz_vanilla', result.value.tier, -1, name.startsWith('kzpro'))
+  }
+
+  for (const mode of ['kz_timer', 'kz_simple', 'kz_vanilla'] as KzMode[]) {
+    await WrRepos[mode].deleteByMapName(name)
+  }
+}
+
+export const editMapTier = async (map: KzMap, newTier: number) => {
   const isKzPro = map.name.startsWith('kzpro')
   const promises: Promise<void>[] = []
 
@@ -65,7 +90,7 @@ const editMapTier = async (map: KzMap, newTier: number) => {
   await Promise.all(promises)
 }
 
-const editMap = async (id: number, updatedMap: KzMap) => {
+export const editMap = async (id: number, updatedMap: KzMap) => {
   const currentMap = await MapRepo.findById(id)
 
   if (!currentMap) {
@@ -107,14 +132,4 @@ const editMap = async (id: number, updatedMap: KzMap) => {
   currentMap.date = updatedMap.date
 
   await MapRepo.updateById(currentMap.id, currentMap)
-}
-
-export {
-  getAllMapsCached,
-  getMrdates,
-  setMrdates,
-  recacheMaps,
-  renameMap,
-  editMapTier,
-  editMap,
 }

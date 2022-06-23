@@ -20,20 +20,14 @@ interface SteamResponse {
   loccountrycode: string
 }
 
-export const fetchSteamProfile = async (steamId64: string) => {
+export const fetchSteamProfile = async (steamId64: string): Promise<SteamResponse | null> => {
   try {
     const result = await Axios.get(
       `https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${config.steam.apiKey}&steamids=${steamId64}`, {
         timeout: 4000,
       })
 
-    const { loccountrycode, avatarfull, personaname } = result.data.response.players[0]
-    return {
-      country: loccountrycode,
-      avatar: avatarfull,
-      name: personaname,
-    }
-
+    return result.data.response.players[0]
   } catch (error) {
     // this sometimes just fails, had full logs of this stuff for some reason
     if (!error.isAxiosError) {

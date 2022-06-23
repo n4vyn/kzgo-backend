@@ -1,12 +1,12 @@
-import Express from 'express'
-import Axios from 'axios'
-import { findMapOnPlayersServer, runToString, twitchAuth } from './twitchServices'
-import { auth } from '../../middlewares/auth/auth'
+import Express, { RequestHandler } from 'express'
+import { findMapOnPlayersServer, getWrText } from './twitchServices'
 import { MapRepo } from '../maps/MapRepo'
+import { config } from '../../config'
+import { KzMode } from '../../types'
 
 const router = Express.Router()
 
-const modesMap = new Map([
+const modesMap = new Map<string, KzMode>([
   ['kz_timer', 'kz_timer'],
   ['kzt', 'kz_timer'],
   ['KZT', 'kz_timer'],
@@ -20,12 +20,18 @@ const modesMap = new Map([
 
 const errMsg = 'not found'
 
-router.use(auth('TwitchStreamer'))
+const auth: RequestHandler = (req, res, next) => {
+  // started making this generic but it will be only for nykan anyways.. Sikari will soon finish the new overlay
+  if (req.params.secret !== config.server.twitchSecret) {
+    res.sendStatus(401)
+    return
+  }
 
-// todo: this doesn't work anymore
+  next()
+}
 
-router.get('/:secret/map', twitchAuth, async (req, res) => {
-  const map = await findMapOnPlayersServer(req.steamId64!)
+router.get('/:secret/map', auth, async (req, res) => {
+  const map = await findMapOnPlayersServer(config.server.twitchSteamId)
 
   if (!map) {
     res.send(errMsg)
@@ -47,8 +53,8 @@ router.get('/:secret/map', twitchAuth, async (req, res) => {
 
 })
 
-router.get('/:secret/tier', twitchAuth, async (req, res) => {
-  const map = await findMapOnPlayersServer(req.steamId64!)
+router.get('/:secret/tier', auth, async (req, res) => {
+  const map = await findMapOnPlayersServer(config.server.twitchSteamId)
 
   if (!map) {
     res.send(errMsg)
@@ -62,8 +68,8 @@ router.get('/:secret/tier', twitchAuth, async (req, res) => {
   }
 })
 
-router.get('/:secret/wr', twitchAuth, async (req, res) => {
-  const map = await findMapOnPlayersServer(req.steamId64!)
+router.get('/:secret/wr', auth, async (req, res) => {
+  const map = await findMapOnPlayersServer(config.server.twitchSteamId)
 
   if (!map) {
     res.send(errMsg)
@@ -71,7 +77,7 @@ router.get('/:secret/wr', twitchAuth, async (req, res) => {
   }
 
   const { q1, q2 } = req.query as { q1: string, q2: string }
-  let mode = 'kz_timer'
+  let mode: KzMode = 'kz_timer'
   let stage = '0'
 
   if (q1 !== 'null') {
@@ -80,7 +86,7 @@ router.get('/:secret/wr', twitchAuth, async (req, res) => {
     }
 
     if (modesMap.has(q1)) {
-      mode = modesMap.get(q1) as string
+      mode = modesMap.get(q1)!
     }
   }
 
@@ -90,18 +96,12 @@ router.get('/:secret/wr', twitchAuth, async (req, res) => {
     }
 
     if (modesMap.has(q2)) {
-      mode = modesMap.get(q2) as string
+      mode = modesMap.get(q2)!
     }
   }
 
-  const promises = [
-    await Axios.get(`https://kztimerglobal.com/api/v2.0/records/top?map_name=${map.name}&stage=${stage}&modes_list_string=${mode}&has_teleports=true&limit=1`),
-    await Axios.get(`https://kztimerglobal.com/api/v2.0/records/top?map_name=${map.name}&stage=${stage}&modes_list_string=${mode}&has_teleports=false&limit=1`),
-  ]
-
-  const [resTp, resPro] = await Promise.all(promises)
-
-  res.send(`${map.name}; TP: ${runToString(resTp.data[0])}; PRO: ${runToString(resPro.data[0])}`)
+  const txt = await getWrText(map.name, stage, mode)
+  res.send(txt)
 })
 
 export default router

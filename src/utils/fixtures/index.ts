@@ -56,7 +56,6 @@ const insertAuthFixtures = async () => {
   createUser('admin', 'admin', ['Admin'])
   createUser('mapmod', 'mapmod', ['MapMod'])
   createUser('vnlmod', 'vnlmod', ['VnlMod'])
-  createUser('twitch', 'twitch', ['TwitchStreamer'])
   Logger.info('Server fixtures inserted.')
 }
 
