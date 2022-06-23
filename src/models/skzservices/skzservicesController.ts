@@ -3,6 +3,7 @@ import { auth } from '../../middlewares/auth/auth'
 import { CompletionRepo } from '../completions/CompletionRepo'
 import { MapRepo } from '../maps/MapRepo'
 import { recacheMaps } from '../maps/mapServices'
+import { refetchForMap } from '../wrs/wrServices'
 
 const router = Express.Router()
 
@@ -27,6 +28,21 @@ router.post('/maps/bulk', async (req, res) => {
 
   await CompletionRepo.updateBoth('kz_simple', pro, tp)
   await recacheMaps()
+
+  res.sendStatus(204)
+})
+
+
+router.post('/wrs/refetch/:mapId', async (req, res) => {
+  if (!/^[0-9]{3,4}$/.test(req.params.mapId)) {
+    res.status(400).json({ message: 'Invalid mapId.' })
+    return
+  }
+
+  const mapId = parseInt(req.params.mapId, 10)
+
+  await refetchForMap(mapId, 'kz_simple', 'pro')
+  await refetchForMap(mapId, 'kz_simple', 'tp')
 
   res.sendStatus(204)
 })

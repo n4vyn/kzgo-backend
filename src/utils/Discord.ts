@@ -70,7 +70,7 @@ class DiscordC {
     }
 
     const embed = new MessageEmbed({
-      title,
+      title: title.slice(0, 255),
       author: {
         name: authorName,
       },
