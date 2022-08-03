@@ -62,15 +62,14 @@ export const broadcast = async (payload: WorldRecordBc[]) => {
     webpush.sendNotification(sub, JSON.stringify(payload))
       .catch(error => {
         // if (error.body.includes('unsubscribed') || error.body.includes('expired')) {
+        Logger.error(error)
+        Discord.sendError(error)
         if (error.statusCode === 410) {
-          Discord.sendError(error)
           SubscriptionRepo.deleteByEndpoint(sub.endpoint)
             .then()
             .catch(e => {
               Discord.sendError(e)
             })
-        } else {
-          Discord.sendError(error)
         }
       })
   }
@@ -79,7 +78,6 @@ export const broadcast = async (payload: WorldRecordBc[]) => {
 export const processRuns = async (runs: RunFromApi[], mode: KzMode, type: KzRunType): Promise<WorldRecordBc[]> => {
   let i = -1
 
-  // const latestWrDate = (await getLatestWr(mode, type))?.createdOn ?? '0'
   const latestWrDate = (await WrRepos.findLatest(mode, type))?.createdOn ?? '0'
 
   for (const run of runs) {
