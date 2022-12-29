@@ -42,7 +42,7 @@ const process = async () => {
 
   //b-a sestupne, a-b vzestupne
   recordsToBroadcast.sort((a, b) => {
-    return new Date(b.createdOn).getTime() - new Date(a.createdOn).getTime()
+    return new Date(a.createdOn).getTime() - new Date(b.createdOn).getTime()
   })
 
   // 31 records was 4604Bytes, it's not possible to get over 8k Bytes so I'm not looping it
