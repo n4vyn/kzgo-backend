@@ -21,12 +21,9 @@ let recordsToBroadcast: WorldRecordBc[] = []
 const process = async () => {
   for (const c of combinations) {
     const response = await Axios.get(`${url}&modes_list=${c.mode}&has_teleports=${c.type === 'tp'}`)
-    // const runs: RunFromApi[] = response.data
-    // recordsToBroadcast.push(...await processRuns(runs, c.mode, c.type))
-    const res = await processRuns(response.data as RunFromApi[], c.mode, c.type)
-    recordsToBroadcast.push(...res)
+    const processedRuns = await processRuns(response.data as RunFromApi[], c.mode, c.type)
+    recordsToBroadcast.push(...processedRuns)
   }
-
   // filter out map newer than 2 days because there is a lot of wrs on new maps and it would spam
   const mapsToFetch = new Set(recordsToBroadcast.map(rec => rec.mapName))
 

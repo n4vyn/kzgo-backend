@@ -63,6 +63,7 @@ export const broadcast = async (payload: WorldRecordBc[]) => {
       .catch(error => {
         // if (error.body.includes('unsubscribed') || error.body.includes('expired')) {
         Logger.error(error)
+        Logger.error(error.body)
         Discord.sendError(error)
         if (error.statusCode === 410) {
           SubscriptionRepo.deleteByEndpoint(sub.endpoint)
@@ -76,29 +77,37 @@ export const broadcast = async (payload: WorldRecordBc[]) => {
 }
 
 export const processRuns = async (runs: RunFromApi[], mode: KzMode, type: KzRunType): Promise<WorldRecordBc[]> => {
-  let i = -1
+  // kz api is shit and sometimes skips wr and puts it in later after some newer WR is considered latest
+  // therefore this logic that tried to optimise database reads skipped it too
 
-  const latestWrDate = (await WrRepos.findLatest(mode, type))?.createdOn ?? '0'
+  // let i = -1
 
-  for (const run of runs) {
-    if (run.created_on <= latestWrDate) break
-    i++
-  }
+  // const latestWrDate = (await WrRepos.findLatest(mode, type))?.createdOn ?? '0'
+
+  // for (const run of runs) {
+  //   if (run.created_on <= latestWrDate) break
+  //   i++
+  // }
+
+  const currentWrMap = new Map((await WrRepos[mode].getAllForType(type)).map(wr => ([wr.mapId, wr])))
 
   const wrs: WorldRecordBc[] = []
 
-  for (i; i > -1; i--) {
-    const run = runs[i]
+  // for (i; i > -1; i--) {
+  for (const run of runs.reverse()) {
+    // const run = runs[i]
 
-    const oldRun = await WrRepos[mode].findByMapIdAndType(run.map_id, type)
+    // const oldRun = await WrRepos[mode].findByMapIdAndType(run.map_id, type)
+    const oldRun = currentWrMap.get(run.map_id)
 
     let diff: number | null = null
 
     if (!oldRun) {
       await WrRepos.insertNew(run)
     } else {
+      if (oldRun.createdOn >= run.created_on) continue
       diff = calcDiff(oldRun.time, run.time, oldRun.diff)
-      await WrRepos.update(run, diff)
+      await WrRepos.update(run, diff, oldRun.steamId)
     }
 
     wrs.push({
@@ -110,11 +119,12 @@ export const processRuns = async (runs: RunFromApi[], mode: KzMode, type: KzRunT
       mode: run.mode,
       diff: diff,
       createdOn: run.created_on,
+      previousSteamId: oldRun?.steamId ?? null,
     })
 
-    if (i === 0) {
-      await WrRepos.upsertLatestWr(run)
-    }
+    // if (i === 0) {
+    //   await WrRepos.upsertLatestWr(run)
+    // }
   }
 
   return wrs
@@ -130,7 +140,7 @@ export const calcDiff = (oldTime: number, newTime: number, oldDiff: number | nul
   if (!oldTime) return null
   const diff = ((oldTime * 1000) - (newTime * 1000)) / 1000
   if (diff === 0) return oldDiff
-  return diff
+  return parseFloat(diff.toFixed(3))
 }
 
 export const refetchForMap = async (mapId: number, mode: KzMode, type: KzRunType): Promise<boolean> => {
@@ -149,7 +159,7 @@ export const refetchForMap = async (mapId: number, mode: KzMode, type: KzRunType
         diff = calcDiff(response.data[1].time, run.time, 0)
       }
 
-      await WrRepos.update(run, diff)
+      await WrRepos.update(run, diff, response.data[1].steamId)
     }
 
     return true

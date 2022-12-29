@@ -1,5 +1,6 @@
 import { AxiosError } from 'axios'
 import { Client, Intents, MessageEmbed, TextChannel } from 'discord.js'
+import { WebPushError } from 'web-push'
 import { config } from '../config'
 import { Logger } from './Logger'
 
@@ -108,6 +109,11 @@ class DiscordC {
       return {
         title: error.response?.config.url ?? 'Unknown Axios Error',
         message: error.response?.data as string,
+      }
+    } else if (error instanceof WebPushError) {
+      return {
+        title: error.name,
+        message: `StatusCode: ${error.statusCode}\n${error.body}\n${error.stack}` ?? 'Unknown stack.',
       }
     } else if (error instanceof Error) {
       return {

@@ -34,4 +34,5 @@ export interface WorldRecordBc { // broadcast format
   mode: string,
   diff: number | null,
   createdOn: string,
+  previousSteamId: string | null,
 }
