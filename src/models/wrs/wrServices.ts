@@ -108,8 +108,9 @@ export const processRuns = async (runs: RunFromApi[], mode: KzMode, type: KzRunT
       if (oldRun.createdOn >= run.created_on) continue
       diff = calcDiff(oldRun.time, run.time, oldRun.diff)
       await WrRepos.update(run, diff, oldRun.steamId)
-      currentWrMap.set(run.map_id, { mapId:run.map_id, createdOn: run.created_on, time: run.time, diff, steamId: run.steam_id })
     }
+
+    currentWrMap.set(run.map_id, { mapId:run.map_id, createdOn: run.created_on, time: run.time, diff, steamId: run.steam_id })
 
     wrs.push({
       mapName: run.map_name,
