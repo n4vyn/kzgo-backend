@@ -6,6 +6,7 @@ const router = express.Router()
 router.get('/:steamid64', async (req, res) => {
   if (!/^[0-9]{17}$/.test(req.params.steamid64)) {
     res.status(400).json({ message: 'Invalid steamId64.' })
+    return
   }
 
   const steamData = await fetchSteamProfile(req.params.steamid64)

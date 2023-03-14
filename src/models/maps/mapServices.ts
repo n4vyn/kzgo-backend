@@ -116,7 +116,7 @@ export const editMap = async (id: number, updatedMap: KzMap) => {
   }
 
   if (currentMap.vp !== updatedMap.vp) {
-    if (updatedMap.sp) {
+    if (updatedMap.vp) {
       CompletionRepo.incTierAndTotal('kz_vanilla', updatedMap.tier, 1, isKzPro)
     } else {
       CompletionRepo.incTierAndTotal('kz_vanilla', updatedMap.tier, -1, isKzPro)
